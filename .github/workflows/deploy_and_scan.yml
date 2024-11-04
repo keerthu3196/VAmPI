@@ -38,7 +38,23 @@ jobs:
 
       # Run the Docker container
       - name: Run Docker container
-        run: docker run ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_REPO }}:latest
+        run: docker run - d ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_REPO }}:latest
+
+
+      # Optional: Add a health check to confirm the app has started
+      - name: Check if app is running
+        run: |
+          for i in {1..10}; do
+            if curl -s http://localhost:5000 >/dev/null; then
+              echo "App is running!"
+              exit 0
+            else
+              echo "Waiting for the app to start..."
+              sleep 5
+            fi
+          done
+          echo "App failed to start."
+          exit 1
 
 
       - name: ZAP API Scan

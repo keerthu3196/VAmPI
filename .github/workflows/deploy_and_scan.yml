@@ -45,7 +45,7 @@ jobs:
           docker ps -q --filter=name=my-app-container
           cd ${{github.workspace}}/openapi_specs/
           pwd
-          cd /zap/wrl
+          cd /zap/wrk/
           ls
 
 

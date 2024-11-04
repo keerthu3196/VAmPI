@@ -43,7 +43,8 @@ jobs:
       - name: Verify container status
         run: |
           docker ps -q --filter=name=my-app-container
+          cd ${{github.workspace}}/openapi_specs/
 
 
       - name: ZAP API Scan
-        run:  docker run --network=host -v $(pwd):/zap/wrk/:rw -t zaproxy/zap-stable zap-api-scan.py -t ${{github.workspace}}/openapi_specs/openapi3.yml -f openapi -x api_report.xml
+        run:  docker run --network=host -v $(pwd):/zap/wrk/:rw -t zaproxy/zap-stable zap-api-scan.py -t openapi3.yml -f openapi -x api_report.xml

@@ -38,7 +38,7 @@ jobs:
 
       # Run the Docker container
       - name: Run Docker container
-        run: docker run - d ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_REPO }}:latest
+        run: docker run -d ${{ vars.DOCKER_USERNAME }}/${{ vars.DOCKER_REPO }}:latest
 
 
       # Optional: Add a health check to confirm the app has started

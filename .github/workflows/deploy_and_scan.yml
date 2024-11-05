@@ -54,7 +54,7 @@ jobs:
           format: openapi
           target: openapi3.yml
           rules_file_name: '.zap/rules.tsv'
-          cmd_options: '--network=$ip -x zap-report.xml -a'
+          cmd_options: '-O http://184.73.66.255 -x zap-report.xml -a '
           
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v4

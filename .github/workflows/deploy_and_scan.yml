@@ -44,7 +44,7 @@ jobs:
         run: |
           docker ps -q --filter=name=my-app-container
           cp ${{github.workspace}}/openapi_specs/openapi3.yml ./
-          hostname -I
+          ip=$(hostname -I | awk '{print $1}')
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.8.0
@@ -54,7 +54,7 @@ jobs:
           format: openapi
           target: openapi3.yml
           rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-x zap-report.xml -a'
+          cmd_options: '--network=$ip -x zap-report.xml -a'
           
       - name: Upload ZAP Report
         uses: actions/upload-artifact@v4

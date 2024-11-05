@@ -44,6 +44,7 @@ jobs:
         run: |
           docker ps -q --filter=name=my-app-container
           cp ${{github.workspace}}/openapi_specs/openapi3.yml ./
+          hostname -I
 
       - name: ZAP Scan
         uses: zaproxy/action-api-scan@v0.8.0
